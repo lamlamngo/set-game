@@ -20,8 +20,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import MainGame.AddButtonListener;
 import MainGame.NewGameButtonListener;
+import MainGame.Next12Listener;
 import MainGame.QuitButtonListener;
 import MainGame.ShowASetButtonListener;
+import MainGame.ShowAllListener;
 import MainGame.SolitaireButtonListener;
 import MainGame.TutorialButtonListener;
 
@@ -127,6 +129,19 @@ public class PlaySetGame extends JFrame{
             }
         });
         timer.start(); // timer to count time upward
+        
+        //Tutorial Panel to play tutorial mode
+        tutorialPanel = new JPanel();
+        tutorialPanel.setLayout(new BoxLayout(tutorialPanel,BoxLayout.PAGE_AXIS));
+        readyButton = new CustomButton("next 12");
+        showAllButton = new CustomButton("show sets");
+        readyButton.setBackground(Color.white);
+        showAllButton.setBackground(Color.white);
+        tutorialPanel.setBackground(Color.magenta);
+        tutorialPanel.add(readyButton);
+        tutorialPanel.add(showAllButton);
+        readyButton.addActionListener(new Next12Listener());
+        showAllButton.addActionListener(new ShowAllListener());
         
         
 	}
