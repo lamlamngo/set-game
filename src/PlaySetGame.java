@@ -323,6 +323,99 @@ public class PlaySetGame extends JFrame{
         count = 0;
         repaint();
     }
+    
+    /**
+     * What to do when SolitaireButton is pressed.
+     */
+    private class SolitaireButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            startTime = System.currentTimeMillis();
+            inTutorial = false;
+            switchtutorialButton.setBackground(Color.white);
+            switchsolitaireButton.setBackground(Color.pink);
+            myGame.reDeal();
+            cp.removeAll();
+            cp.add(switchPanel, BorderLayout.NORTH);
+            cp.add(solitairePanel, BorderLayout.EAST);
+            cp.add(canvasPanel, BorderLayout.CENTER);
+            updateCounter();
+            cp.revalidate();
+            count = 0;
+            repaint();
+        }
+    }
+
+    /**
+     * What to do when tutorialButton is pressed.
+     */
+    private class TutorialButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            inTutorial = true;
+            switchsolitaireButton.setBackground(Color.white);
+            switchtutorialButton.setBackground(Color.pink);
+            cp.removeAll();
+            cp.add(switchPanel, BorderLayout.NORTH);
+            cp.add(tutorialPanel, BorderLayout.EAST);
+            cp.add(canvasPanel, BorderLayout.CENTER);
+            myGame.reDeal();
+            cp.revalidate();
+            repaint();
+        }
+    }
+
+    /**
+     * What to do when toMainMenu Button is pressed.
+     */
+    private class ToMainMenuListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String[] options = { "yes", "no" };
+            int result = JOptionPane.showOptionDialog(null, "Are you sure?", "Warning",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                    null, options, options[0]);
+            if (result == 0) {
+                cp.removeAll();
+                cp.add(menuPanel);
+                cp.revalidate();
+            }
+            repaint();
+        }
+    }
+
+
+    /**
+     * What to do when add button is pressed.
+     */
+    private class AddButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event){
+            int result = myGame.addThreeCards();
+            boolean stillSet = myGame.stillSet();
+            if (result == 0){
+                JOptionPane.showMessageDialog(null, "there are sets. find them.");
+            }
+            if(result == 2 && stillSet){
+                JOptionPane.showMessageDialog(null, "no more cards but there are still sets");
+            }else if (!myGame.stillSet()){
+                repaint();
+                checkEndGame();
+            }
+            updateCounter();
+            repaint();
+        }
+    }
+
+    /**
+     * What to do when showaset button is pressed.
+     */
+    private class ShowASetButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event){
+            if (!myGame.stillSet()){
+                JOptionPane.showMessageDialog(null, "i'm sorry dave i'm afraid i can't open the pod bay, i mean find a set. please add more cards.");
+            }else{
+                myGame.showASet();
+            }
+            repaint();
+        }
+    }
 	
     /**
      * CanvasPanel is the class upon which we actually draw.  It listens
