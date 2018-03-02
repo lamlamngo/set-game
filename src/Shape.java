@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -128,10 +129,12 @@ public abstract class Shape {
      */
     protected BufferedImage loadImage(BufferedImage img, String path) {
         try {
-          img = ImageIO.read(MainGame.class.getResourceAsStream(path));
+        	  System.out.println(path);
+          img = ImageIO.read(new File(path));
         }
         catch (IOException ex) {
           // handle exception
+        		System.out.println("in here");
         }
         return img;
     }
