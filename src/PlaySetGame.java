@@ -155,7 +155,7 @@ public class PlaySetGame extends JFrame{
         
 		frame.setLayout(new BorderLayout());
 		frame.add(menuPanel, BorderLayout.CENTER);
-		
+        
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setVisible(true);      
 	}
@@ -280,7 +280,7 @@ public class PlaySetGame extends JFrame{
                     } else if (result == 1) {
                         myGame.reDeal();
                     } else if (result == 2) {
-                        frame.removeAll();
+                        frame.getContentPane().removeAll();
                         frame.add(menuPanel);
                         frame.revalidate();
                         repaint();
@@ -303,7 +303,7 @@ public class PlaySetGame extends JFrame{
         inTutorial = false;
         switchtutorialButton.setBackground(Color.white);
         switchsolitaireButton.setBackground(Color.pink);
-        frame.removeAll();
+        frame.getContentPane().removeAll();
         frame.add(switchPanel, BorderLayout.NORTH);
         frame.add(solitairePanel, BorderLayout.EAST);
         frame.add(canvasPanel, BorderLayout.CENTER);
@@ -324,7 +324,7 @@ public class PlaySetGame extends JFrame{
             switchtutorialButton.setBackground(Color.white);
             switchsolitaireButton.setBackground(Color.pink);
             myGame.reDeal();
-            frame.removeAll();
+            frame.getContentPane().removeAll();
             frame.add(switchPanel, BorderLayout.NORTH);
             frame.add(solitairePanel, BorderLayout.EAST);
             frame.add(canvasPanel, BorderLayout.CENTER);
@@ -343,7 +343,7 @@ public class PlaySetGame extends JFrame{
             inTutorial = true;
             switchsolitaireButton.setBackground(Color.white);
             switchtutorialButton.setBackground(Color.pink);
-            frame.removeAll();
+            frame.getContentPane().removeAll();
             frame.add(switchPanel, BorderLayout.NORTH);
             frame.add(tutorialPanel, BorderLayout.EAST);
             frame.add(canvasPanel, BorderLayout.CENTER);
@@ -363,7 +363,7 @@ public class PlaySetGame extends JFrame{
                     JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                     null, options, options[0]);
             if (result == 0) {
-                frame.removeAll();
+                frame.getContentPane().removeAll();
                 frame.add(menuPanel);
                 frame.revalidate();
             }

@@ -212,8 +212,8 @@ public class PlayingDeck {
 	 * @param p Graphics object
 	 */
 	public void display(Graphics p){
-		int canvasWidth = MainGame.getCanvasWidth();
-		int canvasHeight = MainGame.getCanvasHeight();
+		int canvasWidth = PlaySetGame.getCanvasWidth();
+		int canvasHeight = PlaySetGame.getCanvasHeight();
 		int cardWidth = canvasWidth/4;
 		int cardHeight = canvasHeight/4;
 		int counter = 0;
