@@ -225,7 +225,7 @@ public class PlaySetGame extends JFrame{
             }
             count = 0;
             updateCounter();
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -241,7 +241,7 @@ public class PlaySetGame extends JFrame{
             if (result == 0){
                 System.exit(0);
             }
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -251,7 +251,7 @@ public class PlaySetGame extends JFrame{
     private class Next12Listener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             myGame.reDeal();
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -282,8 +282,8 @@ public class PlaySetGame extends JFrame{
                     } else if (result == 2) {
                         frame.getContentPane().removeAll();
                         frame.add(menuPanel);
-                        frame.revalidate();
-                        repaint();
+                        frame.getContentPane().revalidate();
+                        frame.repaint();
                     }
                     myGame.setDone();
                 }
@@ -291,7 +291,7 @@ public class PlaySetGame extends JFrame{
                 JOptionPane.showMessageDialog(null, "oops, somehow there is no set. Click on " +
                         "next 12 to try again.");
             }
-            repaint();
+            frame.repaint();
         }
     }
     
@@ -309,9 +309,9 @@ public class PlaySetGame extends JFrame{
         frame.add(canvasPanel, BorderLayout.CENTER);
         myGame.reDeal();
         updateCounter();
-        frame.revalidate();
+        frame.getContentPane().revalidate();
         count = 0;
-        repaint();
+        frame.repaint();
     }
     
     /**
@@ -329,9 +329,9 @@ public class PlaySetGame extends JFrame{
             frame.add(solitairePanel, BorderLayout.EAST);
             frame.add(canvasPanel, BorderLayout.CENTER);
             updateCounter();
-            frame.revalidate();
+            frame.getContentPane().revalidate();
             count = 0;
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -349,7 +349,7 @@ public class PlaySetGame extends JFrame{
             frame.add(canvasPanel, BorderLayout.CENTER);
             myGame.reDeal();
             frame.revalidate();
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -365,9 +365,9 @@ public class PlaySetGame extends JFrame{
             if (result == 0) {
                 frame.getContentPane().removeAll();
                 frame.add(menuPanel);
-                frame.revalidate();
+                frame.getContentPane().revalidate();
             }
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -385,11 +385,11 @@ public class PlaySetGame extends JFrame{
             if(result == 2 && stillSet){
                 JOptionPane.showMessageDialog(null, "no more cards but there are still sets");
             }else if (!myGame.stillSet()){
-                repaint();
+                frame.repaint();
                 checkEndGame();
             }
             updateCounter();
-            repaint();
+            frame.repaint();
         }
     }
 
@@ -403,7 +403,7 @@ public class PlaySetGame extends JFrame{
             }else{
                 myGame.showASet();
             }
-            repaint();
+            frame.repaint();
         }
     }
 	
@@ -431,6 +431,7 @@ public class PlaySetGame extends JFrame{
         public void paintComponent(Graphics page) {
             super.paintComponent(page);
             myGame.display(page);
+            System.out.println("in here");
             if (inTutorial){
                 page.drawString("Welcome to tutorial mode! The goal of this "
                 				+ "tutorial is to demonstrate how to make a set. "
@@ -460,7 +461,7 @@ public class PlaySetGame extends JFrame{
                     JOptionPane.showMessageDialog(null, "You got a set!");
                     myGame.removeSelected();
                     myGame.ensureFullField();
-                    repaint();
+                    frame.repaint();
                     checkEndGame();
                 }else if (result == 0){
                     JOptionPane.showMessageDialog(null, "Not a set!");
@@ -468,7 +469,7 @@ public class PlaySetGame extends JFrame{
                 }
                 updateCounter();
             }
-            repaint();
+            frame.repaint();
         }
 
         //we don't use these.

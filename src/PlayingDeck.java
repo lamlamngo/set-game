@@ -187,7 +187,7 @@ public class PlayingDeck {
 	public void reset(){
 		dealt = 0;
 		deSelect();
-		cardsInPlayed.remove(cardsInPlayed);
+		cardsInPlayed.clear();
 		currentCards = 0;
 		cardSelected = 0;
 		shuffle();
@@ -212,6 +212,7 @@ public class PlayingDeck {
 	 * @param p Graphics object
 	 */
 	public void display(Graphics p){
+		System.out.println(cardsInPlayed.get(0));
 		int canvasWidth = PlaySetGame.getCanvasWidth();
 		int canvasHeight = PlaySetGame.getCanvasHeight();
 		int cardWidth = canvasWidth/4;

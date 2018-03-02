@@ -129,7 +129,6 @@ public abstract class Shape {
      */
     protected BufferedImage loadImage(BufferedImage img, String path) {
         try {
-        	  System.out.println(path);
           img = ImageIO.read(new File(path));
         }
         catch (IOException ex) {
