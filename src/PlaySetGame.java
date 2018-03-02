@@ -166,10 +166,35 @@ public class PlaySetGame extends JFrame{
 		frame.add(menuPanel, BorderLayout.CENTER);
 		
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		frame.setVisible(true);
-        
-        
+		frame.setVisible(true);      
 	}
+	
+    /**
+     * Check to see if the game ends.
+     * If true:     print out a mesage saying they have won in x time and asks if they want to play again.
+     */
+    private void checkEndGame(){
+        if (myGame.checkEndCondition()) {
+            long endTime = System.currentTimeMillis();
+            long timeelapsed = endTime - startTime;
+            long time1 = timeelapsed/1000;
+            String time = timeelapsed/1000 + " seconds.";
+            if (time1 >= 60){
+                int timeMIN = (int) (long) (time1/60);
+                int timeSec = (int) (long)time1 - timeMIN *60;
+                time = timeMIN + " minutes and " + timeSec + " seconds.";
+            }
+
+            String[] options = {"yes", "no"};
+            int userChoice = JOptionPane.showOptionDialog(null, "you finished the game in " + time + " want to play again?", "you are good",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            if (userChoice == 0) {
+                changeToSolitaire();
+            } else {
+                System.exit(0);
+            }
+        }
+    }
 	
     /**
      * CanvasPanel is the class upon which we actually draw.  It listens
