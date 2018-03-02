@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -9,6 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import MainGame.CanvasPanel;
 
 
 public class PlaySetGame extends JFrame{
@@ -32,7 +37,23 @@ public class PlaySetGame extends JFrame{
     private Timer timer;                        // A timer object
     
 	public PlaySetGame() {
-		
+        try {
+            // Set cross-platform Java L&F
+            UIManager.setLookAndFeel(
+                    UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
+            // handle exception
+        } catch (ClassNotFoundException e) {
+            // handle exception
+        } catch (InstantiationException e) {
+            // handle exception
+        } catch (IllegalAccessException e) {
+            // handle exception
+        }
+
+        myGame = new SetGame();    // initialize the game
+        canvasPanel = new CanvasPanel();
+        canvasPanel.setBackground(Color.pink); // initilize the canvas and set it background color to pink.
 	}
 	
     /**
