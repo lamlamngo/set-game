@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -46,6 +47,7 @@ public class PlaySetGame extends JFrame{
     private int count;
     private JLabel setCount, cardCount, counter;    // JLabel to display text
     private Timer timer;                        // A timer object
+    private JFrame frame;
     
 	public PlaySetGame() {
         try {
@@ -157,6 +159,14 @@ public class PlaySetGame extends JFrame{
         switchsolitaireButton.addActionListener(new SolitaireButtonListener());
         switchtutorialButton.addActionListener(new TutorialButtonListener());
         switchQuitButton.addActionListener(new ToMainMenuListener());
+        
+		frame = new JFrame("Object-Oriented Set Game");
+        
+		frame.setLayout(new BorderLayout());
+		frame.add(menuPanel, BorderLayout.CENTER);
+		
+		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		frame.setVisible(true);
         
         
 	}
