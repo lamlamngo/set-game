@@ -16,19 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import MainGame.AddButtonListener;
-import MainGame.NewGameButtonListener;
-import MainGame.Next12Listener;
-import MainGame.QuitButtonListener;
-import MainGame.ShowASetButtonListener;
-import MainGame.ShowAllListener;
-import MainGame.SolitaireButtonListener;
-import MainGame.ToMainMenuListener;
-import MainGame.TutorialButtonListener;
 
 public class PlaySetGame extends JFrame{
     private final int FRAME_WIDTH = 700, FRAME_HEIGHT = 500;
@@ -489,4 +480,13 @@ public class PlaySetGame extends JFrame{
         public void mouseExited(MouseEvent event) { }
         public void mouseMoved(MouseEvent event) { }
     }
+    
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new PlaySetGame();
+			}
+		});
+	}
 }
