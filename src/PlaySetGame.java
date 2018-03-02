@@ -25,6 +25,7 @@ import MainGame.QuitButtonListener;
 import MainGame.ShowASetButtonListener;
 import MainGame.ShowAllListener;
 import MainGame.SolitaireButtonListener;
+import MainGame.ToMainMenuListener;
 import MainGame.TutorialButtonListener;
 
 public class PlaySetGame extends JFrame{
@@ -142,6 +143,20 @@ public class PlaySetGame extends JFrame{
         tutorialPanel.add(showAllButton);
         readyButton.addActionListener(new Next12Listener());
         showAllButton.addActionListener(new ShowAllListener());
+        
+        //Switch panel
+        switchPanel = new JPanel();
+        switchsolitaireButton = new CustomButton("solitaire");
+        switchtutorialButton = new CustomButton("tutorial");
+        switchQuitButton = new CustomButton("main menu");
+        switchQuitButton.setBackground(Color.white);
+        switchPanel.setBackground(Color.yellow);
+        switchPanel.add(switchsolitaireButton);
+        switchPanel.add(switchtutorialButton);
+        switchPanel.add(switchQuitButton);
+        switchsolitaireButton.addActionListener(new SolitaireButtonListener());
+        switchtutorialButton.addActionListener(new TutorialButtonListener());
+        switchQuitButton.addActionListener(new ToMainMenuListener());
         
         
 	}
