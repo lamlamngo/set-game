@@ -195,6 +195,30 @@ public class PlaySetGame extends JFrame{
             }
         }
     }
+
+    /**
+     * @return  canvasWidth for playingDeck
+     */
+    public static int getCanvasWidth(){
+        return canvasPanel.getWidth();
+    }
+
+    /**
+     * @return canvasHeight for playingDeck
+     * @return
+     */
+    public static int getCanvasHeight(){
+        return canvasPanel.getHeight();
+    }
+
+    /**
+     * Update the card and set counter for solitaire panel.
+     */
+    private void updateCounter(){
+        cardCount.setText(CARDS_LEFT + myGame.getCardsLeft());
+        setCount.setText(SET_COUNT + myGame.getSetCount());
+        solitairePanel.revalidate();
+    }
 	
     /**
      * CanvasPanel is the class upon which we actually draw.  It listens
