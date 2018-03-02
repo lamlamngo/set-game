@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -218,6 +219,90 @@ public class PlaySetGame extends JFrame{
         cardCount.setText(CARDS_LEFT + myGame.getCardsLeft());
         setCount.setText(SET_COUNT + myGame.getSetCount());
         solitairePanel.revalidate();
+    }
+    
+    /**
+     * What to do when newGameButton is pressed.
+     */
+    private class NewGameButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String[] options = { "yes", "no" };
+            int result = JOptionPane.showOptionDialog(null, "Are you sure?", "Warning",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                    null, options, options[0]);
+            if (result == 0){
+                myGame.reDeal();
+            }
+            count = 0;
+            updateCounter();
+            repaint();
+        }
+    }
+
+    /**
+     * What to do QuitButton is pressed.
+     */
+    private class QuitButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String[] options = { "yes", "no" };
+            int result = JOptionPane.showOptionDialog(null, "Are you sure?", "Warning",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                    null, options, options[0]);
+            if (result == 0){
+                System.exit(0);
+            }
+            repaint();
+        }
+    }
+
+    /**
+     * What to do when Next12 button is pressed.
+     */
+    private class Next12Listener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            myGame.reDeal();
+            repaint();
+        }
+    }
+
+    /**
+     * What to do when showAllButton is pressed.
+     */
+    private class ShowAllListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String[] options = new String[3];
+            options[0] = "Solitaire";
+            options[1] = "Try again";
+            options[2] = "To main menu";
+            int size = myGame.showAllSets().size();
+            if (size != 0){
+                if (myGame.doneShowing()) {
+                    int result = JOptionPane.showOptionDialog((Component) null,
+                            "Those were all the sets! Are you ...set... to play solitaire mode?",
+                            "Tutorial Complete",
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            options,
+                            options[2]);
+                    if (result == 0) {
+                        changeToSolitaire();
+                    } else if (result == 1) {
+                        myGame.reDeal();
+                    } else if (result == 2) {
+                        cp.removeAll();
+                        cp.add(menuPanel);
+                        cp.revalidate();
+                        repaint();
+                    }
+                    myGame.setDone();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "oops, somehow there is no set. Click on " +
+                        "next 12 to try again.");
+            }
+            repaint();
+        }
     }
 	
     /**
