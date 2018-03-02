@@ -33,7 +33,6 @@ public class PlaySetGame extends JFrame{
     private CustomButton showButton;
     private CustomButton solitaireButton, tutorialButton, dealButton, addButton, quitButton,
     switchsolitaireButton, switchtutorialButton, switchQuitButton, showAllButton, readyButton; // various button of the applet
-    private Container cp;
     private boolean inTutorial = false; // a boolean to suggest when we are in tutorial mode
     private long startTime;
     private int count;
@@ -281,9 +280,9 @@ public class PlaySetGame extends JFrame{
                     } else if (result == 1) {
                         myGame.reDeal();
                     } else if (result == 2) {
-                        cp.removeAll();
-                        cp.add(menuPanel);
-                        cp.revalidate();
+                        frame.removeAll();
+                        frame.add(menuPanel);
+                        frame.revalidate();
                         repaint();
                     }
                     myGame.setDone();
@@ -304,13 +303,13 @@ public class PlaySetGame extends JFrame{
         inTutorial = false;
         switchtutorialButton.setBackground(Color.white);
         switchsolitaireButton.setBackground(Color.pink);
-        cp.removeAll();
-        cp.add(switchPanel, BorderLayout.NORTH);
-        cp.add(solitairePanel, BorderLayout.EAST);
-        cp.add(canvasPanel, BorderLayout.CENTER);
+        frame.removeAll();
+        frame.add(switchPanel, BorderLayout.NORTH);
+        frame.add(solitairePanel, BorderLayout.EAST);
+        frame.add(canvasPanel, BorderLayout.CENTER);
         myGame.reDeal();
         updateCounter();
-        cp.revalidate();
+        frame.revalidate();
         count = 0;
         repaint();
     }
@@ -325,12 +324,12 @@ public class PlaySetGame extends JFrame{
             switchtutorialButton.setBackground(Color.white);
             switchsolitaireButton.setBackground(Color.pink);
             myGame.reDeal();
-            cp.removeAll();
-            cp.add(switchPanel, BorderLayout.NORTH);
-            cp.add(solitairePanel, BorderLayout.EAST);
-            cp.add(canvasPanel, BorderLayout.CENTER);
+            frame.removeAll();
+            frame.add(switchPanel, BorderLayout.NORTH);
+            frame.add(solitairePanel, BorderLayout.EAST);
+            frame.add(canvasPanel, BorderLayout.CENTER);
             updateCounter();
-            cp.revalidate();
+            frame.revalidate();
             count = 0;
             repaint();
         }
@@ -344,12 +343,12 @@ public class PlaySetGame extends JFrame{
             inTutorial = true;
             switchsolitaireButton.setBackground(Color.white);
             switchtutorialButton.setBackground(Color.pink);
-            cp.removeAll();
-            cp.add(switchPanel, BorderLayout.NORTH);
-            cp.add(tutorialPanel, BorderLayout.EAST);
-            cp.add(canvasPanel, BorderLayout.CENTER);
+            frame.removeAll();
+            frame.add(switchPanel, BorderLayout.NORTH);
+            frame.add(tutorialPanel, BorderLayout.EAST);
+            frame.add(canvasPanel, BorderLayout.CENTER);
             myGame.reDeal();
-            cp.revalidate();
+            frame.revalidate();
             repaint();
         }
     }
@@ -364,9 +363,9 @@ public class PlaySetGame extends JFrame{
                     JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                     null, options, options[0]);
             if (result == 0) {
-                cp.removeAll();
-                cp.add(menuPanel);
-                cp.revalidate();
+                frame.removeAll();
+                frame.add(menuPanel);
+                frame.revalidate();
             }
             repaint();
         }
@@ -485,7 +484,7 @@ public class PlaySetGame extends JFrame{
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new PlaySetGame();
+				new PlaySetGame ();
 			}
 		});
 	}
