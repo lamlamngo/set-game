@@ -304,6 +304,25 @@ public class PlaySetGame extends JFrame{
             repaint();
         }
     }
+    
+    /**
+     * change the panel to solitaire panel.
+     */
+    private void changeToSolitaire(){
+        startTime = System.currentTimeMillis();
+        inTutorial = false;
+        switchtutorialButton.setBackground(Color.white);
+        switchsolitaireButton.setBackground(Color.pink);
+        cp.removeAll();
+        cp.add(switchPanel, BorderLayout.NORTH);
+        cp.add(solitairePanel, BorderLayout.EAST);
+        cp.add(canvasPanel, BorderLayout.CENTER);
+        myGame.reDeal();
+        updateCounter();
+        cp.revalidate();
+        count = 0;
+        repaint();
+    }
 	
     /**
      * CanvasPanel is the class upon which we actually draw.  It listens
