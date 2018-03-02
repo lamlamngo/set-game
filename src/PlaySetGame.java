@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,12 +15,12 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import MainGame.CanvasPanel;
-
+import MainGame.QuitButtonListener;
+import MainGame.SolitaireButtonListener;
+import MainGame.TutorialButtonListener;
 
 public class PlaySetGame extends JFrame{
-    private static final long serialVersionUID = 1L;
-    private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 500;
+    private final int FRAME_WIDTH = 700, FRAME_HEIGHT = 500;
     private static final String CARDS_LEFT = "cards in deck: ";
     private static final String SET_COUNT = "Set: ";
 
@@ -53,7 +55,36 @@ public class PlaySetGame extends JFrame{
 
         myGame = new SetGame();    // initialize the game
         canvasPanel = new CanvasPanel();
-        canvasPanel.setBackground(Color.pink); // initilize the canvas and set it background color to pink.
+        canvasPanel.setBackground(Color.pink); // initialize the canvas and set it background color to pink.
+        
+        //Main menu Panel
+        menuPanel = new JPanel(); //This holds the buttons used to choose a game mode.
+        titlePanel = new JPanel();
+        titleLabel = new JLabel("Welcome To Our Game of Set!");
+        titleLabel.setFont(new Font("Monospaced", Font.PLAIN, 30));
+        titlePanel.setLayout(new FlowLayout());
+        titlePanel.add(titleLabel);
+        titlePanel.setBackground(Color.pink);
+        solitaireButton = new CustomButton("solitaire");
+        solitaireButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        tutorialButton = new CustomButton("tutorial");
+        tutorialButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        quitButton = new CustomButton("quit");
+        quitButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        menuPanel.setLayout(new FlowLayout());
+        tutorialButton.setBackground(Color.white); //Sets the color of this button to white.
+        solitaireButton.setBackground(Color.white); //Sets the color of this button to white.
+        quitButton.setBackground(Color.white); //Sets the color of this button to white.
+        menuPanel.add(solitaireButton);
+        menuPanel.add(tutorialButton);
+        menuPanel.add(quitButton);
+        menuPanel.add(titlePanel);
+        menuPanel.setBackground(Color.pink);
+        solitaireButton.addActionListener(new SolitaireButtonListener());
+        tutorialButton.addActionListener(new TutorialButtonListener());
+        quitButton.addActionListener(new QuitButtonListener());
+        
+        
 	}
 	
     /**
