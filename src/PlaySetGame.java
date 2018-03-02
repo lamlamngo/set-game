@@ -431,7 +431,6 @@ public class PlaySetGame extends JFrame{
         public void paintComponent(Graphics page) {
             super.paintComponent(page);
             myGame.display(page);
-            System.out.println("in here");
             if (inTutorial){
                 page.drawString("Welcome to tutorial mode! The goal of this "
                 				+ "tutorial is to demonstrate how to make a set. "
