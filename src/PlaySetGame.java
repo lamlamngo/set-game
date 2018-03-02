@@ -3,10 +3,13 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,7 +18,10 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import MainGame.AddButtonListener;
+import MainGame.NewGameButtonListener;
 import MainGame.QuitButtonListener;
+import MainGame.ShowASetButtonListener;
 import MainGame.SolitaireButtonListener;
 import MainGame.TutorialButtonListener;
 
@@ -83,6 +89,44 @@ public class PlaySetGame extends JFrame{
         solitaireButton.addActionListener(new SolitaireButtonListener());
         tutorialButton.addActionListener(new TutorialButtonListener());
         quitButton.addActionListener(new QuitButtonListener());
+        
+        //Solitaire Panel to play Solitaire mode
+        solitairePanel = new JPanel();
+        dealButton = new CustomButton("new game");
+        addButton = new CustomButton("add");
+        showButton = new CustomButton("hint");
+        dealButton.setBackground(Color.white);
+        addButton.setBackground(Color.white);
+        showButton.setBackground(Color.white);
+        solitairePanel.setBackground(Color.cyan);
+        solitairePanel.add(dealButton);
+        solitairePanel.add(addButton);
+        solitairePanel.add(showButton);
+        solitairePanel.setLayout(new BoxLayout(solitairePanel,BoxLayout.PAGE_AXIS));
+        setCount = new JLabel(SET_COUNT + myGame.getSetCount());
+        cardCount = new JLabel(CARDS_LEFT + myGame.getCardsLeft());
+        solitairePanel.add(setCount);
+        solitairePanel.add(cardCount);
+        dealButton.addActionListener(new NewGameButtonListener());
+        addButton.addActionListener(new AddButtonListener());
+        showButton.addActionListener(new ShowASetButtonListener());
+        counter = new JLabel();
+        solitairePanel.add(counter);
+        count = 0;
+        timer = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                count++;
+                if (count < 60){
+                    counter.setText(0 + ":" + count);
+                }else{
+                    int min = count/60;
+                    counter.setText(min + ":" + (count-min*60));
+                }
+
+            }
+        });
+        timer.start(); // timer to count time upward
         
         
 	}
